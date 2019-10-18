@@ -1,0 +1,20 @@
+---
+kind: pipeline
+name: edge-aarch64
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: build
+    image: alpine:latest
+    commands:
+      - apk add drill
+      - cat /etc/resolv.conf
+      - drill nonexistent.nonexistent
+    pull: always
+
+trigger:
+  event:
+    - push
